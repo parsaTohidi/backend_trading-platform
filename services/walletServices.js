@@ -5,36 +5,8 @@ var Wallet         = require('../models/wallet')
 var Transaction    = require('../models/transaction')
 var CryptoProperty = require('../models/cryptoProperty')
 var utils          = require('./utils')
-const fs           = require('fs')
 
 var methods = {}
-
-var privates = {
-	checkUsername: (userId, username) => {
-		return new Promise((resolve, reject) => {
-			if (!username) {
-				resolve()
-			}
-			else {
-				Profile.findOne({username: username})
-					.then(user => {
-						if (!user || user._id.toString() === userId.toString()) {
-							resolve()
-						}
-						else {
-							reject({
-								eCode: 400,
-								eText: 'username exist!'
-							})
-						}
-					})
-					.catch(err => {
-						reject({eCode: 500, eText: err})
-					})
-			}
-		})
-	}
-}
 
 methods.getTransactions = ({user, page, number}) => {
 	return new Promise((resolve, reject) => {

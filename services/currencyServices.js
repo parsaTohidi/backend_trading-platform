@@ -8,33 +8,6 @@ const fs       = require('fs')
 
 var methods = {}
 
-var privates = {
-	checkUsername: (userId, username) => {
-		return new Promise((resolve, reject) => {
-			if (!username) {
-				resolve()
-			}
-			else {
-				Profile.findOne({username: username})
-					.then(user => {
-						if (!user || user._id.toString() === userId.toString()) {
-							resolve()
-						}
-						else {
-							reject({
-								eCode: 400,
-								eText: 'username exist!'
-							})
-						}
-					})
-					.catch(err => {
-						reject({eCode: 500, eText: err})
-					})
-			}
-		})
-	}
-}
-
 methods.getCurrency = (currencyId) => {
 	return new Promise((resolve, reject) => {
 		Currency.findOne({_id: currencyId})
