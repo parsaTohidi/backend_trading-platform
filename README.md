@@ -1,4 +1,4 @@
-# xcoins-backendTest
+# Backend sample project
 ## Parts
 **1- general**
 
